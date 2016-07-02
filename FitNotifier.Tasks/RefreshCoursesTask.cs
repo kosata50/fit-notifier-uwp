@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FitNotifier.Data.Model;
+using FitNotifier.Data.Storage;
+using FitNotifier.Data.Update;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +17,15 @@ namespace FitNotifier.Tasks
         {
             deff = taskInstance.GetDeferral();
 
-            await Task.Delay(500);
+            try
+            {
+                Settings settings = await new SettingsStorage().LoadSettings();
+                CoursesRefresher refresher = new CoursesRefresher(settings);
+                await refresher.RefreshCourses();
+            }
+            catch
+            {
+            }
 
             deff.Complete();
         }

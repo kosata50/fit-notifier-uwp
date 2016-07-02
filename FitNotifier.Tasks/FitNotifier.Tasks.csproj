@@ -111,6 +111,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RefreshCoursesTask.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FitNotifier.Data\FitNotifier.Data.csproj">
+      <Project>{1793e9b1-5ed6-407f-912e-2b4fbd1ce6f1}</Project>
+      <Name>FitNotifier.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
