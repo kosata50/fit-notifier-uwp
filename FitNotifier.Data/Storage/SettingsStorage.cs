@@ -22,7 +22,7 @@ namespace FitNotifier.Data.Storage
                 vault.Add(new Windows.Security.Credentials.PasswordCredential(AccountName, settings.User.Username, settings.User.Password));
             }
 
-            var file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync(FileName, Windows.Storage.CreationCollisionOption.OpenIfExists);
+            var file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync(FileName, Windows.Storage.CreationCollisionOption.ReplaceExisting);
             using (Stream stream = await file.OpenStreamForWriteAsync())
             {
                 XmlSerializer serializer = new XmlSerializer(settings.Entries.GetType());
