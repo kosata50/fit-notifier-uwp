@@ -20,6 +20,7 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Uživatelské jméno:"/>
                     <TextBox Grid.Row="1" PlaceholderText="Zadejte username." Text="{Binding Username, Mode=TwoWay}" IsEnabled="{Binding LoggedIn,Converter={StaticResource invBool}}"/>
@@ -39,6 +40,10 @@
                             FontSize="20" 
                             Visibility="{Binding LoggedIn, Converter={StaticResource boolToVis},FallbackValue=Collapsed}" 
                             Click="Logout_Click"/>
+                    <StackPanel Grid.Row="8" Visibility="{Binding AnyRefresh, Converter={StaticResource boolToVis}}">
+                        <TextBlock Text="Poslední obnovení:" Foreground="#FF919191"/>
+                        <TextBlock Text="{Binding Settings.Entries.LastRefresh}" FontSize="18" Foreground="#FF7E7E7E"/>
+                    </StackPanel>
                 </Grid>
             </PivotItem>
         </Pivot>

@@ -42,7 +42,7 @@ namespace FitNotifier.Pages
             DataContext = model = new CoursesViewModel(!settings.LoggedIn);
             if (settings.LoggedIn)
             {
-                refresher = new CoursesRefresher(settings.User);
+                refresher = new CoursesRefresher(settings);
                 //await refresher.Storage.DeleteCourses();//DEBUG
                 await LoadCourses();
                 if (model.Courses.Count == 0)

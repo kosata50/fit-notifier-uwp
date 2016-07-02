@@ -15,6 +15,7 @@ namespace FitNotifier.ViewModel
         public string Password { get; set; }
 
         public bool LoggedIn => Settings.LoggedIn;
+        public bool AnyRefresh => Settings.Entries.LastRefresh.HasValue;
         public bool LoginProgress { get; private set; }
 
         public SettingsViewModel(Settings settings)

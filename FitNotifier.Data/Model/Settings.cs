@@ -10,8 +10,7 @@ namespace FitNotifier.Data.Model
     public class Settings
     {
         public UserCredencials User { get; set; }
-
-        public DateTime? LastRefresh { get; set; }
+        public SettingsEntries Entries { get; set; }
 
         public bool LoggedIn => User != null;
     }
