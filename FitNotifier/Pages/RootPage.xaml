@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="FitNotifier.Pages.RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FitNotifier.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0732A6" Offset="0"/>
+                    <GradientStop Color="#FF001C68" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel Orientation="Horizontal">
+                <Button Background="Transparent" VerticalAlignment="Stretch" Padding="15, 0" Visibility="{Binding CanGoBack, Converter={StaticResource boolToVis}}" Click="Back_Click">
+                    <SymbolIcon Symbol="Back" Foreground="White"/>
+                </Button>
+                <TextBlock Text="{Binding Title,FallbackValue='FIT Notifier',TargetNullValue='FIT Notifier'}" FontSize="22" Margin="8" Foreground="White" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <Frame Name="contentFrame" Grid.Row="1"/>
+    </Grid>
+</Page>

@@ -1,0 +1,17 @@
+﻿<Application
+    x:Class="FitNotifier.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FitNotifier"
+    xmlns:converters="using:WinUX.Xaml.Converters"
+    xmlns:ex="using:FitNotifier.Extensions"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="boolToVis"/>
+        <converters:InverseBooleanToVisibilityConverter x:Key="invBoolToVis"/>
+        <converters:DateTimeFormatConverter x:Key="dateToString"/>
+        <ex:InverseBoolConverter x:Key="invBool"/>
+    </Application.Resources>
+    
+</Application>

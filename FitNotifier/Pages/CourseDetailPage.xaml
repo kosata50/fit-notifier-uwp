@@ -1,0 +1,112 @@
+﻿<Page
+    x:Class="FitNotifier.Pages.CourseDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FitNotifier.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ex="using:FitNotifier.Extensions"
+    xmlns:view="using:FitNotifier.ViewModel"
+    xmlns:kos="using:FitNotifier.Data.Services.Kos.Entities"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="viewExams" Source="{Binding Exams}" IsSourceGrouped="True"/>
+        <ex:BoolToColorConverter x:Key="examAvaible" TrueColor="#FF006300" FalseColor="#FFA40101"/>
+
+        <ex:ObjectToStringConverter x:Name="examTypeConverter">
+            <ex:ObjectToStringConverter.Pairs>
+                <ex:ObjectStringPair Text="Zápočet">
+                    <ex:ObjectStringPair.Key>
+                        <kos:ExamType>Assessment</kos:ExamType>
+                    </ex:ObjectStringPair.Key>
+                </ex:ObjectStringPair>
+                <ex:ObjectStringPair Text="Zkouška">
+                    <ex:ObjectStringPair.Key>
+                        <kos:ExamType>FinalExam</kos:ExamType>
+                    </ex:ObjectStringPair.Key>
+                </ex:ObjectStringPair>
+            </ex:ObjectToStringConverter.Pairs>
+        </ex:ObjectToStringConverter>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Kos.Name}" FontSize="23" VerticalAlignment="Center" Margin="5, 0, 0, 0"/>
+        <TextBlock Grid.Row="1" Text="Detail předmětu" FontSize="14" Foreground="#FF6C6C6C" Margin="6, 0, 0, 0" VerticalAlignment="Center"/>
+        <Pivot Grid.Row="2">
+            <PivotItem Header="Edux" Margin="0">
+                <Grid>
+                    <WebView ex:WebViewEx.HTML="{Binding Edux.HTML}"/>
+                    <Border Background="#FFE8E8E8" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="10" Margin="0, 30" CornerRadius="2" 
+                            BorderBrush="#FFFFAD00" BorderThickness="1" Visibility="{Binding Edux.Empty,Converter={StaticResource boolToVis},FallbackValue=Collapsed}">
+                        <StackPanel>
+                            <SymbolIcon Symbol="Important" Margin="5"/>
+                            <TextBlock Text="Předmět nemá na Eduxu tabulku s výsledky." Foreground="#FF000032" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </PivotItem>
+            
+            <PivotItem Header="KOS" Margin="0">
+                <Grid>
+                    <ListView ItemsSource="{Binding Source={StaticResource viewExams}}" ShowsScrollingPlaceholders="True">
+                        <ListView.GroupStyle>
+                            <GroupStyle >
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Key, Converter={StaticResource examTypeConverter}}"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Kos.Start,Converter={StaticResource dateToString},ConverterParameter='dd. MM. yyyy, HH:mm'}" FontSize="22" 
+                                               Foreground="#FF000032" ToolTipService.ToolTip="Datum a čas konání." HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Kos.Room}" FontSize="15" Foreground="#FF595959" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                               ToolTipService.ToolTip="Místnost konání."/>
+                                    <TextBlock Grid.Row="2" Text="{Binding Kos.Note}" FontSize="15" Foreground="#FF595959" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                               ToolTipService.ToolTip="Poznámka k termínu."/>
+                                    <SymbolIcon Grid.Column="1" Grid.RowSpan="3" Symbol="Contact" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                Foreground="#FF030049" Visibility="{Binding Registered, Converter={StaticResource boolToVis}}" ToolTipService.ToolTip="Jste přihlášeni.">
+                                        <SymbolIcon.RenderTransform>
+                                            <CompositeTransform ScaleX="1.4" ScaleY="1.4"/>
+                                        </SymbolIcon.RenderTransform>
+                                    </SymbolIcon>
+                                    <StackPanel Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" ToolTipService.ToolTip="Obsazenost termínu.">
+                                        <TextBlock Text="{Binding Kos.Occupied}" FontSize="19" Foreground="{Binding Avaible, Converter={StaticResource examAvaible}}"/>
+                                        <TextBlock Text="/" FontSize="19" Foreground="{Binding Avaible, Converter={StaticResource examAvaible}}"/>
+                                        <TextBlock Text="{Binding Kos.Capacity}" FontSize="19" Foreground="{Binding Avaible, Converter={StaticResource examAvaible}}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <TextBlock Grid.Row="1" Text="Předmět nemá vypsané žádné termíny." Foreground="#FF444444" FontSize="17" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding NoExams,Converter={StaticResource boolToVis}}"/>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
