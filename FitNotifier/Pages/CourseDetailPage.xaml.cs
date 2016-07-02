@@ -1,6 +1,5 @@
 ﻿using FitNotifier.Data.Services.Edux.Entities;
-using FitNotifier.Model;
-using FitNotifier.Storage;
+using FitNotifier.Data.Storage;
 using FitNotifier.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace FitNotifier.Pages
             base.OnNavigatedTo(e);
             CourseItem item = (e.Parameter as NavigationParameter).Parameter as CourseItem;
             EduxClassification edux = await new EduxStorage().LoadClassification(item.Kos);
-            List<ExamItem> exams = await new ExamsStorage().LoadExams(item.Kos.Code);
+            List<ExamItem> exams = (await new ExamsStorage().LoadExams(item.Kos.Code)).Select(ex => new ExamItem(ex)).ToList();
             DataContext = model = new CourseDetailViewModel(item.Kos, edux, exams);
         }
     }

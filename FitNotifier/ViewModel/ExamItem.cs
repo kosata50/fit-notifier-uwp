@@ -1,4 +1,5 @@
-﻿using FitNotifier.Data.Services.Kos.Entities;
+﻿using FitNotifier.Data.Model;
+using FitNotifier.Data.Services.Kos.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,14 @@ namespace FitNotifier.ViewModel
 {
     public class ExamItem
     {
-        public Exam Kos { get; set; }
-        public bool Registered { get; set; }
+        public Exam Kos => info.Kos;
+        public bool Registered => info.Registered;
         public bool Avaible => Kos.Occupied < Kos.Capacity;
+        private ExamInfo info;
 
-        public ExamItem(Exam kos)
+        public ExamItem(ExamInfo info)
         {
-            Kos = kos;
-        }
-
-        public ExamItem()
-        {
-
+            this.info = info;
         }
     }
 }

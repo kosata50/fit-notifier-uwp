@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitNotifier.Update
+namespace FitNotifier.Data.Update
 {
     public class EduxUpdater
     {

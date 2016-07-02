@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 
-namespace FitNotifier.Update
+namespace FitNotifier.Data.Update
 {
     public class BackgroundUpdater
     {

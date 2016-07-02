@@ -1,8 +1,8 @@
-﻿using FitNotifier.Data.Services;
+﻿using FitNotifier.Data.Model;
+using FitNotifier.Data.Services;
 using FitNotifier.Data.Services.Kos;
-using FitNotifier.Model;
-using FitNotifier.Storage;
-using FitNotifier.Update;
+using FitNotifier.Data.Storage;
+using FitNotifier.Data.Update;
 using FitNotifier.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace FitNotifier.Pages
 
         private async Task LoadCourses()
         {
-            IList<CourseItem> courses = await refresher.Storage.LoadCourses();
+            IList<CourseItem> courses = (await refresher.Storage.LoadCourses()).Select(c => new CourseItem(c)).ToList();
             model.UpdateCouses(courses);
         }
 
@@ -64,7 +64,7 @@ namespace FitNotifier.Pages
                 progressBar.IsIndeterminate = true;
                 try
                 {
-                    List<CourseItem> courses = await refresher.RefreshCourses();
+                    List<CourseItem> courses = (await refresher.RefreshCourses()).Select(c => new CourseItem(c)).ToList();
                     model.UpdateCouses(courses);
                 }
                 catch

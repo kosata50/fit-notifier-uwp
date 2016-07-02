@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitNotifier.Model
+namespace FitNotifier.Data.Model
 {
     public class Settings
     {

@@ -108,6 +108,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CourseInfo.cs" />
+    <Compile Include="Model\ExamInfo.cs" />
+    <Compile Include="Model\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Edux\EduxService.cs" />
     <Compile Include="Services\Edux\Entities\EduxClassification.cs" />
@@ -121,6 +124,15 @@
     <Compile Include="Services\Kos\Entities\People.cs" />
     <Compile Include="Services\UriUtils.cs" />
     <Compile Include="Services\UserCredencials.cs" />
+    <Compile Include="Storage\CoursesStorage.cs" />
+    <Compile Include="Storage\EduxStorage.cs" />
+    <Compile Include="Storage\ExamsStorage.cs" />
+    <Compile Include="Storage\SettingsStorage.cs" />
+    <Compile Include="Update\BackgroundUpdater.cs" />
+    <Compile Include="Update\CoursesRefresher.cs" />
+    <Compile Include="Update\CourseUpdater.cs" />
+    <Compile Include="Update\EduxUpdater.cs" />
+    <Compile Include="Update\UserUpdater.cs" />
     <EmbeddedResource Include="Properties\FitNotifier.Data.rd.xml" />
   </ItemGroup>
   <ItemGroup />

@@ -1,5 +1,4 @@
-﻿using FitNotifier.Model;
-using FitNotifier.Pages;
+﻿using FitNotifier.Pages;
 using FitNotifier.ViewModel;
 using System;
 using System.Collections.Generic;

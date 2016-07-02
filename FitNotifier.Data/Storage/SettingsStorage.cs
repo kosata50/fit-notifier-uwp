@@ -1,11 +1,11 @@
-﻿using FitNotifier.Model;
+﻿using FitNotifier.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitNotifier.Storage
+namespace FitNotifier.Data.Storage
 {
     public class SettingsStorage
     {
@@ -29,7 +29,7 @@ namespace FitNotifier.Storage
             if (credencials != null)
             {
                 credencials.RetrievePassword();
-                settings.User = new Data.Services.UserCredencials(credencials.UserName, credencials.Password);
+                settings.User = new Services.UserCredencials(credencials.UserName, credencials.Password);
             }
             await Task.Delay(0);//Varning suppress
             return settings;

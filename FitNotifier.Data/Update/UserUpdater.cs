@@ -1,14 +1,14 @@
 ﻿using FitNotifier.Data.Services;
 using FitNotifier.Data.Services.Kos;
-using FitNotifier.Model;
-using FitNotifier.Storage;
+using FitNotifier.Data.Model;
+using FitNotifier.Data.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitNotifier.Update
+namespace FitNotifier.Data.Update
 {
     public class UserUpdater
     {

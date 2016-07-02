@@ -1,4 +1,5 @@
-﻿using FitNotifier.Data.Services.Kos.Entities;
+﻿using FitNotifier.Data.Model;
+using FitNotifier.Data.Services.Kos.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,24 +11,17 @@ namespace FitNotifier.ViewModel
 {
     public class CourseItem : ViewModelBase
     {
-        public Course Kos { get; set; }
-        public bool EduxChanges { get; set; }
-        public bool KosChanges { get; set; }
+        public Course Kos => Info.Kos;
+        public CourseInfo Info { get; private set; }
 
-        public CourseItem(Course course)
+        public CourseItem(CourseInfo info)
         {
-            Kos = course;
+            Info = info;
         }
-
-        public CourseItem()
-        {
-
-        }
-
 
         public void Update(Course kos)
         {
-            Kos = kos;
+            Info.Kos = kos;
             OnPropertyChanged(nameof(Kos));
         }
     }

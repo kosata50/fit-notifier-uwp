@@ -99,8 +99,7 @@
     <Compile Include="Extensions\InverseBoolConverter.cs" />
     <Compile Include="Extensions\ObjectToStringConverter.cs" />
     <Compile Include="Extensions\WebViewEx.cs" />
-    <Compile Include="Model\NavigationParameter.cs" />
-    <Compile Include="Model\Settings.cs" />
+    <Compile Include="ViewModel\NavigationParameter.cs" />
     <Compile Include="Pages\CourseDetailPage.xaml.cs">
       <DependentUpon>CourseDetailPage.xaml</DependentUpon>
     </Compile>
@@ -114,15 +113,6 @@
     <Compile Include="Pages\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Storage\CoursesStorage.cs" />
-    <Compile Include="Storage\EduxStorage.cs" />
-    <Compile Include="Storage\ExamsStorage.cs" />
-    <Compile Include="Storage\SettingsStorage.cs" />
-    <Compile Include="Update\BackgroundUpdater.cs" />
-    <Compile Include="Update\CoursesRefresher.cs" />
-    <Compile Include="Update\CourseUpdater.cs" />
-    <Compile Include="Update\EduxUpdater.cs" />
-    <Compile Include="Update\UserUpdater.cs" />
     <Compile Include="ViewModel\CourseDetailViewModel.cs" />
     <Compile Include="ViewModel\CourseItem.cs" />
     <Compile Include="ViewModel\CoursesViewModel.cs" />

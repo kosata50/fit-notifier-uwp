@@ -1,4 +1,4 @@
-﻿using FitNotifier.ViewModel;
+﻿using FitNotifier.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage;
 
-namespace FitNotifier.Storage
+namespace FitNotifier.Data.Storage
 {
     public class ExamsStorage
     {
         private static string FolderName = "Exams";
 
-        public async Task SaveExams(List<ExamItem> exams, string courseCode)
+        public async Task SaveExams(List<ExamInfo> exams, string courseCode)
         {
             var folder = await GetFolder();
             var file = await folder.CreateFileAsync(courseCode, CreationCollisionOption.ReplaceExisting);
@@ -25,7 +25,7 @@ namespace FitNotifier.Storage
             }
         }
 
-        public async Task<List<ExamItem>> LoadExams(string courseCode)
+        public async Task<List<ExamInfo>> LoadExams(string courseCode)
         {
             var folder = await GetFolder();
             if (await folder.TryGetItemAsync(courseCode) != null)
@@ -33,12 +33,12 @@ namespace FitNotifier.Storage
                 var file = await folder.GetFileAsync(courseCode);
                 using (Stream stream = await file.OpenStreamForReadAsync())
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<ExamItem>));
-                    return (List<ExamItem>)serializer.Deserialize(stream);
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<ExamInfo>));
+                    return (List<ExamInfo>)serializer.Deserialize(stream);
                 }
             }
             else
-                return new List<ExamItem>();
+                return new List<ExamInfo>();
         }
 
         public async Task DeleteExams(string courseCode)

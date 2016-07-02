@@ -1,6 +1,5 @@
 ﻿using FitNotifier.Data.Services;
-using FitNotifier.Storage;
-using FitNotifier.Update;
+using FitNotifier.Data.Update;
 using FitNotifier.ViewModel;
 using System;
 using System.Collections.Generic;
