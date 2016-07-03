@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="5f5a9f7b-3985-4c4d-845d-aaebfbd3210e" Publisher="CN=Jirka" Version="1.0.0.0" />
+  <Identity Name="59449JiKoata.FITNotifier" Publisher="CN=0A3D2B6B-FB37-4291-B7E6-C4AD647A4777" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="5f5a9f7b-3985-4c4d-845d-aaebfbd3210e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>FitNotifier</DisplayName>
-    <PublisherDisplayName>Jirka</PublisherDisplayName>
+    <DisplayName>FIT Notifier</DisplayName>
+    <PublisherDisplayName>Jiří Košata</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
