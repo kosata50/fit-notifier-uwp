@@ -26,6 +26,7 @@ namespace FitNotifier.Data.Update
 
         public async Task Logout(Settings settings)
         {
+            await new BackgroundUpdater().Unregister();
             await storage.DeleteSettings(settings);
             await new CoursesStorage().DeleteCourses();
             await new EduxStorage().DeleteAllClassifications();

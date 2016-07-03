@@ -9,6 +9,8 @@ namespace FitNotifier.Data.Update
 {
     public class BackgroundUpdater
     {
+        private static readonly string TaskName = "RefreshCourses";
+
         public async Task Register()
         {
             TimeTrigger trigger = new TimeTrigger(15, false);
@@ -16,7 +18,14 @@ namespace FitNotifier.Data.Update
             await BackgroundExecutionManager.RequestAccessAsync();
 
             BackgroundTaskRegistration reg = RegisterBackgroundTask("FitNotifier.Tasks.RefreshCoursesTask",
-                "RefreshCourses", trigger, condition);
+                TaskName, trigger, condition);
+        }
+
+        public async Task Unregister()
+        {
+            await BackgroundExecutionManager.RequestAccessAsync();
+            IBackgroundTaskRegistration reg = BackgroundTaskRegistration.AllTasks.SingleOrDefault(t => t.Value.Name == TaskName).Value;
+            reg?.Unregister(false);
         }
 
         public static BackgroundTaskRegistration RegisterBackgroundTask(string taskEntryPoint, string taskName,

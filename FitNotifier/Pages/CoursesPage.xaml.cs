@@ -47,8 +47,9 @@ namespace FitNotifier.Pages
                 await LoadCourses();
                 if (model.Courses.Count == 0)
                     await RefreshCourses();
+
+                await new BackgroundUpdater().Register();
             }
-            await new BackgroundUpdater().Register();
         }
 
         private async Task LoadCourses()
